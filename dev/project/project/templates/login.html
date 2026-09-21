@@ -1,0 +1,34 @@
+<form method="post" action="{% url 'social:begin' 'GITHUB1' %}">
+    {% csrf_token %}
+    <button type="submit">Login with Funky github</button>
+</form>
+
+<form method="post" action="{% url 'social:begin' 'GITHUB2' %}">
+    {% csrf_token %}
+    <button type="submit">Login with Funky github 2</button>
+</form>
+
+<form method="post" action="{% url 'social:begin' 'github' %}">
+    {% csrf_token %}
+    <button type="submit">Login with regular github</button>
+</form>
+
+
+<form method="post" action="{% url 'social:begin' 'AZ-ENTRA' %}">
+    {% csrf_token %}
+    <button type="submit">Login with Azure AD</button>
+</form>
+
+Logged in as <tt>{{ request.user.username }}</tt>
+
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+
+
+<pre>
+{{request}}
+
+{{request.user}}
+</pre>
