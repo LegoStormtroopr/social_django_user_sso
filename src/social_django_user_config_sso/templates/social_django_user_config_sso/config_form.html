@@ -1,0 +1,8 @@
+<h1>{{ config_name|capfirst }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+    <a href="{{ list_url }}">Cancel</a>
+</form>

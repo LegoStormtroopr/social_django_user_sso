@@ -1,0 +1,9 @@
+<h1>Delete {{ object }}?</h1>
+
+<p>Anyone who signs in through {{ config_name }} will no longer be able to.</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+    <a href="{{ list_url }}">Cancel</a>
+</form>

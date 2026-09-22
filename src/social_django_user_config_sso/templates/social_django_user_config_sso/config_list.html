@@ -1,0 +1,25 @@
+<h1>{{ config_name|capfirst }}s</h1>
+
+<table>
+    <thead>
+        <tr>
+            {% for column in columns %}<th>{{ column }}</th>{% endfor %}
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in rows %}
+            <tr>
+                {% for value in row.values %}<td>{{ value }}</td>{% endfor %}
+                <td>
+                    <a href="{{ row.edit_url }}">Edit</a>
+                    <a href="{{ row.delete_url }}">Delete</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="{{ columns|length|add:1 }}">Nothing configured yet</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ create_url }}">Add a {{ config_name }}</a>
