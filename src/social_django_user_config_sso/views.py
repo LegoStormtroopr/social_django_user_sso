@@ -14,15 +14,15 @@ class SSOConfigMixin(PermissionRequiredMixin):
 
     def get_permission_required(self):
         meta = self.model._meta
-        permission = self.permission_codename + '_' + meta.model_name
+        permission = f'{self.permission_codename}_{meta.model_name}'
 
-        return (meta.app_label + '.' + permission,)
+        return (f'{meta.app_label}.{permission}',)
 
     def config_url(self, name: str, *args) -> str:
         """Reverse one of this model's routes, under the namespace it is included in"""
         namespace = self.request.resolver_match.namespace
         if namespace:
-            name = namespace + ':' + name
+            name = f'{namespace}:{name}'
 
         return reverse(name, args=args)
 
