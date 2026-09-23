@@ -34,6 +34,7 @@ class UserDefinedSSOConfig(models.Model):
 
 
 class GitHubSSOConfig(UserDefinedSSOConfig):
+    config_type = 'github'
     psa_backend_name = 'github'
 
     key = models.CharField(max_length=255)
@@ -46,6 +47,7 @@ class GitHubSSOConfig(UserDefinedSSOConfig):
         }
 
 class AzureADSSOConfig(UserDefinedSSOConfig):
+    config_type = 'azure'
     psa_backend_name = 'azuread-oauth2'
 
     client_id = models.CharField(max_length=255, help_text="Azure AD Application (Client) ID.")
