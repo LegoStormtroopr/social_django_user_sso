@@ -18,9 +18,7 @@ This must have a corresponding Django model in .models
 
 
 TODO:
-* Create List/Create/Update/etc... views for UserDefinedSSOConfig model
-* Mask secret field for display-only, must be readable
-* make so it can be installed from github
+* Add oidc support
 
 
 # Starting stuff up
