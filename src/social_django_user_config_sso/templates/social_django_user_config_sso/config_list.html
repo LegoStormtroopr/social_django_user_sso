@@ -1,0 +1,29 @@
+<h1>SSO configs</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for obj in object_list %}
+            <tr>
+                <td>{{ obj.name }}</td>
+                <td>{{ obj.get_subclass_instance.config_type }}</td>
+                <td>
+                    <a href="{% url 'sso_config:update' obj.pk %}">Edit</a>
+                    <a href="{% url 'sso_config:delete' obj.pk %}">Delete</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="3">Nothing configured yet</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% for config_type in config_types %}
+    <a href="{% url 'sso_config:create' config_type %}">Add a {{ config_type }} config</a>
+{% endfor %}
