@@ -25,5 +25,5 @@
 </table>
 
 {% for config_type in config_types %}
-    <a href="{% url 'sso_config:create' config_type %}">Add a {{ config_type }} config</a>
+    <a href="{% url 'sso_config:create' config_type %}"><i class="fab {{config_type.icon_class}}"></i> Add a {{ config_type.name }} config</a>
 {% endfor %}

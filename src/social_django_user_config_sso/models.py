@@ -35,6 +35,7 @@ class UserDefinedSSOConfig(models.Model):
 
 
 class GitHubSSOConfig(UserDefinedSSOConfig):
+    icon_class = 'fa-github'
     config_type = 'github'
     psa_backend_name = 'github'
 
@@ -48,6 +49,7 @@ class GitHubSSOConfig(UserDefinedSSOConfig):
         }
 
 class AzureADSSOConfig(UserDefinedSSOConfig):
+    icon_class = 'fa-microsoft'
     config_type = 'azure'
     psa_backend_name = 'azuread-tenant-oauth2'
 
