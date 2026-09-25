@@ -14,6 +14,7 @@ class UserDefinedGithubOAuth2(UserDefinedOAuthMixin, GithubOAuth2):
     DEFAULT_SCOPE  = ['user:email']
 
 
-from social_core.backends.azuread import AzureADOAuth2
-class UserDefinedAzureADOAuth2(UserDefinedOAuthMixin, AzureADOAuth2):
+# The tenant backend reads TENANT_ID, AzureADOAuth2 always uses the common endpoint
+from social_core.backends.azuread_tenant import AzureADTenantOAuth2
+class UserDefinedAzureADOAuth2(UserDefinedOAuthMixin, AzureADTenantOAuth2):
     pass

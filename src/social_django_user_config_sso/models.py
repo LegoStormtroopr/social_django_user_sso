@@ -3,7 +3,8 @@ from django.db import models
 # Create your models here.
 
 class UserDefinedSSOConfig(models.Model):
-    name = models.CharField(max_length=100, unique=True, help_text="A unique name for this SSO configuration. You will need to make sure your SSO provider sends callbacks to '/complete/<name>/' where <name> is the name you provide here.")
+    name = models.CharField(max_length=100, unique=True, help_text="A unique name for this SSO configuration. Your SSO provider must send callbacks to /complete/'name'/ where 'name' is the name you enter here.")
+    button_name = models.CharField(max_length=100, blank=True, help_text="A button label for the login page.")
 
     def __str__(self):
         return self.name
@@ -48,11 +49,11 @@ class GitHubSSOConfig(UserDefinedSSOConfig):
 
 class AzureADSSOConfig(UserDefinedSSOConfig):
     config_type = 'azure'
-    psa_backend_name = 'azuread-oauth2'
+    psa_backend_name = 'azuread-tenant-oauth2'
 
     client_id = models.CharField(max_length=255, help_text="Azure AD Application (Client) ID.")
     secret = models.CharField(max_length=255)
-    tenant_id = models.CharField(max_length=255, blank=True, help_text="Azure AD Directory (Tenant) ID.")
+    tenant_id = models.CharField(max_length=255, blank=True, help_text="Azure AD Directory (Tenant) ID, leave blank for a multi-tenant app.")
     
     def get_social_auth_settings(self):
         kwargs = {

@@ -20,6 +20,8 @@ This must have a corresponding Django model in .models
 TODO:
 * Add oidc support
 
+# Changelog
+* Switched to tenant specific backend for azure, fixed escaped help text
 
 # Starting stuff up
 
