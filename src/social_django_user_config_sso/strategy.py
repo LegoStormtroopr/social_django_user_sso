@@ -16,9 +16,10 @@ class UserDefinedDjangoStrategy(DjangoStrategy):
     ) -> BaseAuth:
         """Return a configured backend instance"""
         
+        from django.shortcuts import get_object_or_404
         from .models import UserDefinedSSOConfig
 
-        backend_obj = UserDefinedSSOConfig.objects.get(name=name).get_subclass_instance()
+        backend_obj = get_object_or_404(UserDefinedSSOConfig, name=name).get_subclass_instance()
         backend_name = backend_obj.psa_backend_name
         user_settings = backend_obj.get_social_auth_settings()
         
