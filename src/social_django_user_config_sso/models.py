@@ -56,11 +56,20 @@ class AzureADSSOConfig(UserDefinedSSOConfig):
     client_id = models.CharField(max_length=255, help_text="Azure AD Application (Client) ID.", verbose_name="Client ID")
     secret = models.CharField(max_length=255)
     tenant_id = models.CharField(max_length=255, blank=True, help_text="Azure AD Directory (Tenant) ID.", verbose_name="Tenant ID")
-    
+    # The xms_edov claim from the JWT token is not checked by the azuread-tenant-oauth2 backend natively. 
+    # Implementations of this config will have to manually verify that the xms_edov claim is present and true.
+    verify_email_domain = models.BooleanField(
+        default=False,
+        verbose_name="Require verified email domain",
+        help_text="Enable this to only allow sign ins where Azure confirms your tenant has verified the email's domain. "
+                  "Requires the email and xms_edov optional claims on the ID token.",
+    )
+
     def get_social_auth_settings(self):
         kwargs = {
             "KEY": self.client_id,
             "SECRET": self.secret,
+            "VERIFY_EMAIL_DOMAIN": self.verify_email_domain,
         }
         if self.tenant_id:
             kwargs["TENANT_ID"] = self.tenant_id
